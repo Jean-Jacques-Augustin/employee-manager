@@ -1,0 +1,34 @@
+### Inscription d’un nouvel utilisateur
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "test@test.com",
+  "password": "pass123"
+}
+
+### Connexion de l’utilisateur pour récupérer le token JWT
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "test@test.com",
+  "password": "pass123"
+}
+
+### Exécuter une requête protégée en fournissant le token
+GET http://localhost:8080/api/employees
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyamphQG91dGxvb2suZnIiLCJpYXQiOjE3MzQ5MzIzNjksImV4cCI6MTczNTAxODc2OX0.Yz4dwle94uW_Fy1-rBJbPyOEA4XKZCDyagvJDeTZY9k
+Content-Type: application/json
+
+### New employee
+PUT http://localhost:8080/api/employees/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyamphQG91dGxvb2suZnIiLCJpYXQiOjE3MzQ5MzIzNjksImV4cCI6MTczNTAxODc2OX0.Yz4dwle94uW_Fy1-rBJbPyOEA4XKZCDyagvJDeTZY9k
+Content-Type: application/json
+
+{
+  "fullName": "CECI EST EUN TEST",
+  "dateOfBirth": "1990-01-05"
+}
+
+
