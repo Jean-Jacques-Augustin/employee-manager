@@ -1,23 +1,18 @@
-# Utiliser l'image de Node.js
-FROM node:20-alpine
-
-# Définir le répertoire de travail
+# syntax=docker/dockerfile:1
+FROM node:20-alpine AS base
 WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json
-COPY package*.json ./
+FROM base AS deps
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
+RUN npm ci --no-audit
 
-# Installer les dépendances
-RUN npm install
-
-# Copier le reste des fichiers
+FROM base AS dev
+WORKDIR /app
 COPY . .
+COPY --from=deps /app/node_modules ./node_modules
 
-# Builder l'application
-RUN npm run build
 
-# Exposer le port utilisé par le frontend
-EXPOSE 5173
+EXPOSE 3000
 
-# Lancer l'application
-CMD ["npm", "run", "start"]
+# Command to run the development server
+CMD ["npm", "run", "dev"]

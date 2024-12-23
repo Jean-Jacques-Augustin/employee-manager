@@ -1,6 +1,8 @@
 'use server'
 
 import {cookies} from "next/headers";
+import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 interface LoginState {
     error?: string
@@ -37,7 +39,7 @@ function parseSpringUserString(userStr: string) {
 export async function login(
     prevState: LoginState,
     formData: FormData
-): Promise<LoginState> {
+): Promise<any> {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
@@ -92,10 +94,10 @@ export async function login(
             path: '/'
         });
 
-        return {redirectUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/`}
+        return {redirectUrl: '/'}
 
     } catch (error) {
         console.error('Login error:', error)
-        return {error: 'An unexpected error occurred'}
+        return {error: 'Email non reconnu'}
     }
 }

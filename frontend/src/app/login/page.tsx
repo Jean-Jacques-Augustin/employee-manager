@@ -9,6 +9,7 @@ import {Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter} f
 import {Label} from "@/components/ui/label"
 import {Mail, Lock, Loader2} from 'lucide-react'
 import Link from "next/link";
+import { redirect } from "next/navigation"
 
 const initialState = {error: ''}
 
@@ -20,6 +21,10 @@ export default function LoginPage() {
         setIsLoading(true)
         formAction(formData)
         setIsLoading(false)
+    }
+
+    if (state.redirectUrl) {
+        redirect("/")
     }
 
     return (
