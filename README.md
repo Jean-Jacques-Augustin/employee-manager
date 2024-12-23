@@ -70,8 +70,9 @@ Assurez-vous d'avoir installé les outils suivants sur votre machine :
 
 #### Étape 1 : Cloner le dépôt
 ```bash
-git clone <url-du-repo>
-cd fs-test
+git clone https://github.com/Jean-Jacques-Augustin/employee-manager.git
+
+cd employee-manager
 ```
 
 #### Étape 2 : Démarrer avec Docker Compose
