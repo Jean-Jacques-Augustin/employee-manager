@@ -37,6 +37,6 @@ export async function register(
 
     } catch (error) {
         console.error('Erreur lors de l\'inscription:', error);
-        return {error: error.message};
+        return {error: 'Erreur inconnue. Réessayez plus tard.'};
     }
 }
